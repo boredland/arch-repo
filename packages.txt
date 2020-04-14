@@ -7,9 +7,6 @@ cage
 google-cloud-sdk
 oh-my-zsh-git
 slack-desktop
-android-sdk
-android-studio
-android-platform
 gitflow-avh
 chromium-widevine
 redshift-minimal
@@ -17,4 +14,3 @@ sway-launcher-desktop
 ttf-ancient-fonts
 jekyll
 zoom
-android-sdk-platform-tools
