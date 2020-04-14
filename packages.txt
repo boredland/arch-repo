@@ -15,7 +15,6 @@ chromium-widevine
 redshift-minimal
 sway-launcher-desktop
 ttf-ancient-fonts
-swaybg-git
 jekyll
 zoom
 android-sdk-platform-tools
