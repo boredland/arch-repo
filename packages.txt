@@ -4,3 +4,4 @@ autotiling
 greetd-git
 greetd-gtkgreet-git
 cage
+google-cloud-sdk
