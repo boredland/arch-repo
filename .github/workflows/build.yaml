@@ -1,0 +1,42 @@
+name: prepare
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *"
+env:
+  BUILD_DIR: /builder/build
+  REPO_DIR: /builder/repository
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://boredland/arch-builder:latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: build
+        run: |
+          sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat packages.txt | tr -s '\n' ' ')
+      - name: compile_repo
+        run: |
+          ARCH=`uname -a | sed -E 's/.+ (.+) .+/\1/'`
+          rm -rf ${REPO_DIR}
+          mkdir -p ${REPO_DIR}/${ARCH}
+          cd ${REPO_DIR}/${ARCH}
+          find ${BUILD_DIR} -name *.pkg.tar.xz -exec cp -f {} . \;
+          repo-add index.db.tar.gz *.pkg.tar.xz
+          ls ${REPO_DIR}/${ARCH}/*
+          mv ${REPO_DIR} $GITHUB_WORKSPACE/gh-pages
+          printf '%s\n    %s\n' '[boredland]' 'https://boredland.github.io/arch-repo/$arch' >>$GITHUB_WORKSPACE/gh-pages/index.html
+      - name: deploy
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

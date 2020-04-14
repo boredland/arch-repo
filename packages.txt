@@ -1,0 +1,6 @@
+swaynagmode
+flashfocus-git
+autotiling
+greetd-git
+greetd-gtkgreet-git
+cage
