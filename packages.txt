@@ -14,3 +14,6 @@ sway-launcher-desktop
 ttf-ancient-fonts
 jekyll
 zoom
+xdg-desktop-portal
+xdg-desktop-portal-wlr-git
+gitkraken
