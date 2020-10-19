@@ -11,7 +11,6 @@ gitflow-avh
 chromium-widevine
 redshift-minimal
 sway-launcher-desktop
-ttf-ancient-fonts
 jekyll
 zoom
 xdg-desktop-portal
