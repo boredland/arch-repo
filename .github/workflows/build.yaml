@@ -21,7 +21,7 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
       - name: build
         run: |
-          sudo pacman -Syu --noconfirm
+          sudo rm -rf /usr/include/crypt.h /usr/lib/libcrypt.so
           sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat packages.txt | tr -s '\n' ' ')
       - name: prepare_gh_pages
         run: |
