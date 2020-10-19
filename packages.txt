@@ -13,6 +13,7 @@ redshift-minimal
 sway-launcher-desktop
 jekyll
 zoom
+mesa
 xdg-desktop-portal
-xdg-desktop-portal-wlr-git
+xdg-desktop-portal-wlr
 gitkraken
