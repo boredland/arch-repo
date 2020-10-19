@@ -22,7 +22,8 @@ jobs:
       - name: build
         run: |
           rm -rf /usr/include/crypt.h /usr/lib/libcrypt.so
-          yay -Syw --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat packages.txt | tr -s '\n' ' ')
+          mkdir -p ${BUILD_DIR} && chown -R builder:builder ${BUILD_DIR}
+          sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat packages.txt | tr -s '\n' ' ')
       - name: prepare_gh_pages
         run: |
           ARCH=`uname -a | sed -E 's/.+ (.+) .+/\1/'`
@@ -31,6 +32,7 @@ jobs:
           rm -rf ${REPO_DIR}
           mkdir -p ${REPO_DIR}/${ARCH}
           cd ${REPO_DIR}/${ARCH}
+          ls -l
           find ${BUILD_DIR} -name *.pkg.tar.xz -exec cp -f {} . \;
           repo-add ${OWNER}.db.tar.gz *.pkg.tar.xz
           ls ${REPO_DIR}/${ARCH}/*
