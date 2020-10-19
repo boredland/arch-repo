@@ -29,12 +29,12 @@ jobs:
           ARCH=`uname -a | sed -E 's/.+ (.+) .+/\1/'`
           OWNER=${GITHUB_REPOSITORY%/*}
           REPO=${GITHUB_REPOSITORY##*/}
+          ls -l ${BUILD_DIR}/**/*tar*
           rm -rf ${REPO_DIR}
           mkdir -p ${REPO_DIR}/${ARCH}
           cd ${REPO_DIR}/${ARCH}
-          ls -l
-          find ${BUILD_DIR} -name *.pkg.tar.xz -exec cp -f {} . \;
-          repo-add ${OWNER}.db.tar.gz *.pkg.tar.xz
+          find ${BUILD_DIR} -name *.pkg.tar.zst -exec cp -f {} . \;
+          repo-add ${OWNER}.db.tar.gz *.pkg.tar.zst
           ls ${REPO_DIR}/${ARCH}/*
           mv ${REPO_DIR} $GITHUB_WORKSPACE/gh-pages
           cp $GITHUB_WORKSPACE/index.template.html $GITHUB_WORKSPACE/gh-pages/index.html
