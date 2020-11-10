@@ -8,7 +8,6 @@ google-cloud-sdk
 oh-my-zsh-git
 slack-desktop
 gitflow-avh
-chromium-widevine
 redshift-minimal
 sway-launcher-desktop
 jekyll
@@ -19,3 +18,4 @@ gitkraken
 gn-git
 chromium-dev-ozone
 python2-xcb-proto
+chromium-widevine
