@@ -16,3 +16,6 @@ mesa
 xdg-desktop-portal
 xdg-desktop-portal-wlr
 gitkraken
+gn-git
+chromium-dev-ozone
+python2-xcb-proto
