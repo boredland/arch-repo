@@ -23,7 +23,7 @@ jobs:
         run: |
           rm -rf /usr/include/crypt.h /usr/lib/libcrypt.so
           gpg --keyserver keyserver.ubuntu.com --recv-keys 3BB639E56F861FA2E86505690FDD682D974CA72A A66D805F7C9329B4C5D82767CCC4F07FAC641EFF
-          pacman-key --recv-keys 9C825A6605D40BBE
+          pacman-key --keyserver keyserver.ubuntu.com --recv-keys 9C825A6605D40BBE
           mkdir -p ${BUILD_DIR} && chown -R builder:builder ${BUILD_DIR}
           sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat packages.txt | tr -s '\n' ' ')
       - name: prepare_gh_pages
