@@ -4,7 +4,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 1 * * *"
 env:
   BUILD_DIR: /builder/build
   REPO_DIR: /builder/repository
@@ -13,34 +13,67 @@ jobs:
   release:
     runs-on: ubuntu-latest
     container:
-      image: docker://boredland/arch-builder:latest
+      image: docker://boredland/manjaro-builder:latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: build
+
+      - name: set_env
         run: |
-          rm -rf /usr/include/crypt.h /usr/lib/libcrypt.so
+          echo "ARCH=`uname -a | sed -E 's/.+ (.+) .+/\1/'`" >> $GITHUB_ENV
+          echo "OWNER=${GITHUB_REPOSITORY%/*}" >> $GITHUB_ENV
+          echo "REPO=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+
+      - name: prepare
+        run: |
+          echo "[boredland]" >>/etc/pacman.conf
+          echo "SigLevel = Optional" >>/etc/pacman.conf
+          echo "Server = https://boredland.github.io/arch-repo/x86_64/" >>/etc/pacman.conf
+
+          pacman -Syyu --noconfirm
+
+          useradd -d /builder -m builder
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
           mkdir -p ${BUILD_DIR} && chown -R builder:builder ${BUILD_DIR}
-          sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat packages.txt | tr -s '\n' ' ')
-      - name: prepare_gh_pages
-        run: |
-          ARCH=`uname -a | sed -E 's/.+ (.+) .+/\1/'`
-          OWNER=${GITHUB_REPOSITORY%/*}
-          REPO=${GITHUB_REPOSITORY##*/}
-          ls -l ${BUILD_DIR}/**/*tar*
+
+          bash generate_todos.bash
+          pacman -Sw --noconfirm $(cat download.tmp | tr -s '\n' ' ')
+
           rm -rf ${REPO_DIR}
           mkdir -p ${REPO_DIR}/${ARCH}
-          cd ${REPO_DIR}/${ARCH}
-          find ${BUILD_DIR} -name *.pkg.tar.zst -exec cp -f {} . \;
+          while read PKG; do
+            cp -f /var/cache/pacman/pkg/${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}
+          done <download.tmp
+
+      - name: build_aur_pkg
+        run: |  
+          sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat build.tmp | tr -s '\n' ' ')
+          while read PKG; do
+            find ${BUILD_DIR} -name ${PKG}*.pkg.tar.zst -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
+          done <build.tmp
+
+      - name: build_custom_pkg
+        run: |
+          chown -R builder ./custom
+          cd custom
+          for PKG in *.PKGBUILD; do 
+            sudo -u builder makepkg -si -p $PKG --noconfirm
+            cp -f ${PKG%.PKGBUILD}*.pkg.tar.zst ${REPO_DIR}/${ARCH}/
+          done
+
+      - name: prepare_gh_pages
+        run: |
+          cd ${REPO_DIR}/${ARCH}/
           repo-add ${OWNER}.db.tar.gz *.pkg.tar.zst
-          ls ${REPO_DIR}/${ARCH}/*
+
           mv ${REPO_DIR} $GITHUB_WORKSPACE/gh-pages
           cp $GITHUB_WORKSPACE/index.template.html $GITHUB_WORKSPACE/gh-pages/index.html
           sed -i "s/OWNER/${OWNER}/g" $GITHUB_WORKSPACE/gh-pages/index.html
           sed -i "s/REPO/${REPO}/g" $GITHUB_WORKSPACE/gh-pages/index.html
           sed -i "s/TIMESTAMP/$(date)/g" $GITHUB_WORKSPACE/gh-pages/index.html
+
       - name: deploy
         uses: crazy-max/ghaction-github-pages@v1
         with:
