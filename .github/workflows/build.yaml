@@ -28,10 +28,11 @@ jobs:
 
       - name: prepare
         run: |
-          echo "[boredland]" >>/etc/pacman.conf
-          echo "SigLevel = Optional" >>/etc/pacman.conf
-          echo "Server = https://boredland.github.io/arch-repo/x86_64/" >>/etc/pacman.conf
-
+          echo "[boredland]" >>/etc/pacman.d/boredland.conf
+          echo "SigLevel = Optional" >>/etc/pacman.d/boredland.conf
+          echo "Server = https://boredland.github.io/arch-repo/x86_64/" >>/etc/pacman.d/boredland.conf
+          echo "Include = /etc/pacman.d/*" >>/etc/pacman.conf
+          echo "COMPRESSXZ=(xz -c -z -)">>/etc/makepkg.conf
           pacman -Syyu --noconfirm
 
           useradd -d /builder -m builder
@@ -43,14 +44,14 @@ jobs:
 
           rm -rf ${REPO_DIR}
           mkdir -p ${REPO_DIR}/${ARCH}
-          while read PKG; do
+          while read PKG || [[ -n $PKG ]]; do
             cp -f /var/cache/pacman/pkg/${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}
           done <download.tmp
 
       - name: build_aur_pkg
         run: |  
           sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat build.tmp | tr -s '\n' ' ')
-          while read PKG; do
+          while read PKG || [[ -n $PKG ]]; do
             find ${BUILD_DIR} -name ${PKG}*.pkg.tar.zst -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
           done <build.tmp
 
@@ -59,7 +60,7 @@ jobs:
           chown -R builder ./custom
           cd custom
           for PKG in *.PKGBUILD; do 
-            sudo -u builder makepkg -si -p $PKG --noconfirm
+            sudo -u builder makepkg --clean -s -p $PKG --noconfirm
             cp -f ${PKG%.PKGBUILD}*.pkg.tar.zst ${REPO_DIR}/${ARCH}/
           done
 

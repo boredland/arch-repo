@@ -1,7 +1,7 @@
-swaynagmode
-flashfocus-git
 autotiling
-greetd-git
+flashfocus-git
 google-cloud-sdk
+greetd
+greetd-gtkgreet
 sway-launcher-desktop
-jekyll
+swaynagmode
