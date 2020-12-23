@@ -101,3 +101,9 @@ jobs:
           build_dir: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.DISPATCH_TOKEN }}
+          repository: boredland/manjaro-sway
+          event-type: rebuild_image
