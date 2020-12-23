@@ -33,7 +33,6 @@ jobs:
           substitute index.template.html
 
           echo "Include = /etc/pacman.d/*" >>/etc/pacman.conf
-          cp -f repo.conf /etc/pacman.d/
 
           echo "COMPRESSXZ=(xz -c -z -)">>/etc/makepkg.conf
 
@@ -44,25 +43,34 @@ jobs:
           rm -rf ${REPO_DIR}/${ARCH}
           mkdir -p ${REPO_DIR}/${ARCH}
 
-      - name: prepare_work
-        run: |
           pacman -Syyu --noconfirm
 
+      - name: prepare_work
+        run: |
           source $GITHUB_WORKSPACE/helpers.sh
+          cp -f repo.conf /etc/pacman.d/
+          pacman -Sy || echo "warn: problems in custom repo!"
           make_worklist
 
-          pacman -Sw --noconfirm $(cat download.tmp | tr -s '\n' ' ')
+          if test -f "download.tmp"; then
+            pacman -Sw --noconfirm $(cat download.tmp | tr -s '\n' ' ')
 
-          while read PKG || [[ -n $PKG ]]; do
-            cp -f /var/cache/pacman/pkg/${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}
-          done <download.tmp
+            while read PKG || [[ -n $PKG ]]; do
+              cp -f /var/cache/pacman/pkg/${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}
+            done <download.tmp
+          fi
+          rm -f /etc/pacman.d/repo.conf
+          pacman -Sy
 
       - name: build_aur_pkg
         run: |  
-          sudo -u builder yay -Sy --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat build.tmp | tr -s '\n' ' ')
-          while read PKG || [[ -n $PKG ]]; do
-            find ${BUILD_DIR} -name ${PKG}*.pkg.tar.zst -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
-          done <build.tmp
+          if test -f "build.tmp"; then
+            cat build.tmp
+            sudo -u builder yay -S --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat build.tmp | tr -s '\n' ' ')
+            while read PKG || [[ -n $PKG ]]; do
+              find ${BUILD_DIR} -name ${PKG}*.pkg.tar.zst -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
+            done <build.tmp
+          fi
 
       - name: build_custom_pkg
         run: |
@@ -77,6 +85,7 @@ jobs:
         run: |
           cd ${REPO_DIR}/${ARCH}/
           repo-add ${OWNER}.db.tar.gz *.pkg.tar.zst
+          ls -l ${REPO_DIR}/${ARCH}/
 
           mv ${REPO_DIR} $GITHUB_WORKSPACE/gh-pages
 

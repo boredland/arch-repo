@@ -40,7 +40,9 @@ package() {
         'mako'
         'gnome-keyring'
         'blueberry'
-        'swaynagmode')
+        'swaynagmode'
+        'htop'
+        'ttf-font-logos')
     cd $_pkgbase
     install -d $pkgdir/etc
     cp -r community/sway/skel $pkgdir/etc
