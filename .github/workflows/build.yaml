@@ -1,5 +1,7 @@
 name: prepare
 on:
+  repository_dispatch:
+    types: [dependency_update]
   push:
     branches:
       - master
