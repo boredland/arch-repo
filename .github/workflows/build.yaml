@@ -20,30 +20,39 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: set_env
+      - name: prepare_env
         run: |
           echo "ARCH=`uname -a | sed -E 's/.+ (.+) .+/\1/'`" >> $GITHUB_ENV
           echo "OWNER=${GITHUB_REPOSITORY%/*}" >> $GITHUB_ENV
           echo "REPO=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
 
-      - name: prepare
-        run: |
-          echo "[boredland]" >>/etc/pacman.d/boredland.conf
-          echo "SigLevel = Optional" >>/etc/pacman.d/boredland.conf
-          echo "Server = https://boredland.github.io/arch-repo/x86_64/" >>/etc/pacman.d/boredland.conf
+          source $GITHUB_ENV
+          source $GITHUB_WORKSPACE/helpers.sh
+
+          substitute repo.conf
+          substitute index.template.html
+
           echo "Include = /etc/pacman.d/*" >>/etc/pacman.conf
+          cp -f repo.conf /etc/pacman.d/
+
           echo "COMPRESSXZ=(xz -c -z -)">>/etc/makepkg.conf
-          pacman -Syyu --noconfirm
 
           useradd -d /builder -m builder
           echo "builder ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
           mkdir -p ${BUILD_DIR} && chown -R builder:builder ${BUILD_DIR}
+          
+          rm -rf ${REPO_DIR}/${ARCH}
+          mkdir -p ${REPO_DIR}/${ARCH}
 
-          bash generate_todos.bash
+      - name: prepare_work
+        run: |
+          pacman -Syyu --noconfirm
+
+          source $GITHUB_WORKSPACE/helpers.sh
+          make_worklist
+
           pacman -Sw --noconfirm $(cat download.tmp | tr -s '\n' ' ')
 
-          rm -rf ${REPO_DIR}
-          mkdir -p ${REPO_DIR}/${ARCH}
           while read PKG || [[ -n $PKG ]]; do
             cp -f /var/cache/pacman/pkg/${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}
           done <download.tmp
@@ -70,10 +79,9 @@ jobs:
           repo-add ${OWNER}.db.tar.gz *.pkg.tar.zst
 
           mv ${REPO_DIR} $GITHUB_WORKSPACE/gh-pages
+
           cp $GITHUB_WORKSPACE/index.template.html $GITHUB_WORKSPACE/gh-pages/index.html
-          sed -i "s/OWNER/${OWNER}/g" $GITHUB_WORKSPACE/gh-pages/index.html
-          sed -i "s/REPO/${REPO}/g" $GITHUB_WORKSPACE/gh-pages/index.html
-          sed -i "s/TIMESTAMP/$(date)/g" $GITHUB_WORKSPACE/gh-pages/index.html
+          mkdir $GITHUB_WORKSPACE/gh-pages/_includes && cp $GITHUB_WORKSPACE/repo.conf $GITHUB_WORKSPACE/gh-pages/_includes/repo.conf
 
       - name: deploy
         uses: crazy-max/ghaction-github-pages@v1
