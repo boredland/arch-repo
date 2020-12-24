@@ -79,7 +79,7 @@ jobs:
           chown -R builder ./custom
           cd custom
           for PKG in *.PKGBUILD; do 
-            sudo -u builder makepkg --clean -s -p $PKG --noconfirm
+            sudo -u builder makepkg --clean -s --noconfirm -p $PKG 
             cp -f ${PKG%.PKGBUILD}*.pkg.tar.zst ${REPO_DIR}/${ARCH}/
           done
 

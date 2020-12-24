@@ -5,4 +5,3 @@ greetd
 greetd-gtkgreet
 sway-launcher-desktop
 swaynagmode
-chromium-ublock-origin

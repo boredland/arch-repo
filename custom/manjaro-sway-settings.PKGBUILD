@@ -12,19 +12,18 @@ pkgdesc='Manjaro Linux sway settings'
 groups=('sway-manjaro')
 depends=('manjaro-base-skel')
 makedepends=('git')
-optdepends=('gedit: the default text editor'
-        'sterminal: the default terminal'
-        'vim: the default cli text editor'
-        'spacefm: the default file manager'
+optdepends=('vim: the default cli text editor'
+        'ranger: a keyboard centric file manager'
         'gtk-theme-breath: the default gtk theme'
-        'breeze-maia-icon-themes: the default icon theme')
+        'breeze-maia-icon-themes: the default icon theme'
+        'qutebrowser: a keyboard-centric browser')
 conflicts=('manjaro-desktop-settings')
 provides=('manjaro-desktop-settings')
 source=("git+$url.git#branch=$_branch")
 sha256sums=('SKIP')
 
 pkgver() {
-    date +%Y%m%d
+    date +"%Y%m%d%H%M%S"
 }
 
 package() {
