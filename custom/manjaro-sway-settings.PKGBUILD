@@ -10,7 +10,23 @@ _branch=sway
 license=('GPL')
 pkgdesc='Manjaro Linux sway settings'
 groups=('sway-manjaro')
-depends=('manjaro-base-skel')
+depends=('manjaro-base-skel'
+        'waybar'
+        'autotiling'
+        'swaylock'
+        'sway-launcher-desktop'
+        'swayidle'
+        'pamixer'
+        'playerctl'
+        'light'
+        'grim'
+        'mako'
+        'polkit-gnome'
+        'gnome-keyring'
+        'blueberry'
+        'swaynagmode'
+        'htop'
+        'ttf-font-logos')
 makedepends=('git')
 optdepends=('vim: the default cli text editor'
         'ranger: a keyboard centric file manager'
@@ -27,21 +43,6 @@ pkgver() {
 }
 
 package() {
-    depends+=('waybar'
-        'autotiling'
-        'swaylock'
-        'sway-launcher-desktop'
-        'swayidle'
-        'pamixer'
-        'playerctl'
-        'light'
-        'grim'
-        'mako'
-        'gnome-keyring'
-        'blueberry'
-        'swaynagmode'
-        'htop'
-        'ttf-font-logos')
     cd $_pkgbase
     install -d $pkgdir/etc
     cp -r community/sway/skel $pkgdir/etc

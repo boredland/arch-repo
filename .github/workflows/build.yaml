@@ -76,6 +76,8 @@ jobs:
 
       - name: build_custom_pkg
         run: |
+          cp -f repo.conf /etc/pacman.d/
+          pacman -Sy
           chown -R builder ./custom
           cd custom
           for PKG in *.PKGBUILD; do 
