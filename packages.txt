@@ -5,3 +5,4 @@ greetd
 greetd-gtkgreet
 sway-launcher-desktop
 swaynagmode
+termite-nocsd
