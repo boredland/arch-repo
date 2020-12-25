@@ -45,6 +45,8 @@ jobs:
           rm -rf ${REPO_DIR}/${ARCH}
           mkdir -p ${REPO_DIR}/${ARCH}
 
+          sudo -u builder gpg --recv-key E25D679AF73C6D2F
+
           pacman -Syyu --noconfirm
 
       - name: prepare_work

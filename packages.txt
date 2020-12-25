@@ -7,3 +7,6 @@ sway-launcher-desktop
 swaynagmode
 termite-nocsd
 wlogout
+grimshot
+gtk3-nocsd-git
+wdisplays

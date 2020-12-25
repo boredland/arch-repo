@@ -11,6 +11,7 @@ license=('GPL')
 pkgdesc='Manjaro Linux sway settings'
 groups=('sway-manjaro')
 depends=('manjaro-base-skel'
+        'sway'
         'waybar'
         'autotiling'
         'swaylock'
@@ -30,8 +31,6 @@ depends=('manjaro-base-skel'
 makedepends=('git')
 optdepends=('vim: the default cli text editor'
         'ranger: a keyboard centric file manager'
-        'gtk-theme-breath: the default gtk theme'
-        'breeze-maia-icon-themes: the default icon theme'
         'qutebrowser: a keyboard-centric browser')
 conflicts=('manjaro-desktop-settings')
 provides=('manjaro-desktop-settings')

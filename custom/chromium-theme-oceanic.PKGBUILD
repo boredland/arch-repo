@@ -3,9 +3,13 @@
 _id=gbbacdmgjdfajabgglpjifcedoajdimg
 pkgname=chromium-theme-oceanic
 pkgrel=1
-pkgver=1
+pkgver=latest
 arch=('any')
 license=('ISC')
+
+pkgver() {
+    date +"%Y%m%d%H%M%S"
+}
 
 prepare() {
     # Create extension json
