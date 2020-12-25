@@ -3,13 +3,9 @@
 _id=cjpalhdlnbpafiamejdnhcphjbkeiagm
 pkgname=chromium-ublock-origin
 pkgrel=1
-pkgver=20201224120806
+pkgver=1
 arch=('any')
 license=('ISC')
-
-pkgver() {
-    date +"%Y%m%d%H%M%S"
-}
 
 prepare() {
     # Create extension json
