@@ -1,0 +1,5 @@
+{
+    "editor.fontFamily": "'DroidSansMono Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
+    "terminal.integrated.fontFamily": "DroidSansMono Nerd Font",
+    "terminal.integrated.fontSize": 16,
+}
