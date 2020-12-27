@@ -52,3 +52,6 @@ set $shutdown wlogout --buttons-per-row 3
 
 # pulseaudio command
 set $pulseaudio $term_float pulsemixer
+
+# help command
+set $help $term_float man /etc/sway/help.man

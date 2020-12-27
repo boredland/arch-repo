@@ -115,6 +115,9 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
+# Help
+bindsym $mod+shift+? $help
+
 default_border pixel 1
 hide_edge_borders smart
 
