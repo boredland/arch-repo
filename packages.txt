@@ -9,3 +9,4 @@ termite-nocsd
 wlogout
 grimshot
 wdisplays
+oh-my-zsh-git
