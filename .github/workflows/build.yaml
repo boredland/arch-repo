@@ -108,6 +108,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: jakejarvis/wait-action@master
+        with:
+          time: '120s'
+
       - uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.DISPATCH_TOKEN }}

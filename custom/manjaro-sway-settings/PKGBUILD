@@ -33,6 +33,7 @@ conflicts=('manjaro-desktop-settings')
 provides=('manjaro-desktop-settings')
 source=()
 
+install="$pkgname.install"
 
 pkgver() {
     date +"%Y%m%d%H%M%S"
@@ -40,7 +41,6 @@ pkgver() {
 
 package() {
     install -d $pkgdir/etc
-    cp -a /etc/skel/.zshrc /etc/skel/.zshrc.pre-manjaro-sway-settings
     cp -r etc/* $pkgdir/etc
     install -d $pkgdir/usr/share/glib-2.0/schemas
     cp -r schemas/* $pkgdir/usr/share/glib-2.0/schemas

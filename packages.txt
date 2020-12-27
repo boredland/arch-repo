@@ -10,3 +10,4 @@ wlogout
 grimshot
 wdisplays
 oh-my-zsh-git
+nerd-fonts-droid-sans-mono
