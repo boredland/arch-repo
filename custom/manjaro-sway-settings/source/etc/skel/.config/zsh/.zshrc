@@ -1,5 +1,5 @@
 # manjaro base cfg
-source /usr/share/zsh/manjaro-zsh-config
+source ~/.zshrc
 # base config for oh my zsh
 source /usr/share/oh-my-zsh/zshrc
 # nvm
