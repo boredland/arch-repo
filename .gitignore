@@ -1,3 +1,3 @@
-*.tmp
-/custom/*
-!/custom/*.PKGBUILD
+custom/*/pkg
+custom/*/src
+**/*.pkg.tar.zst

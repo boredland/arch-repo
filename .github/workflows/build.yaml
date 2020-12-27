@@ -82,9 +82,13 @@ jobs:
           pacman -Sy
           chown -R builder ./custom
           cd custom
-          for PKG in *.PKGBUILD; do 
-            sudo -u builder makepkg --clean -s --noconfirm -p $PKG 
-            cp -f ${PKG%.PKGBUILD}*.pkg.tar.zst ${REPO_DIR}/${ARCH}/
+          for PKG in *; do
+            cd $PKG
+            [ -d "source" ] && rm -rf src && mkdir -p src && cp -rf source/* src
+            [ -d "src" ] && chown -R builder src
+            sudo -u builder makepkg --clean -s --noconfirm
+            cp -f ${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}/
+            cd ..
           done
 
       - name: prepare_gh_pages
