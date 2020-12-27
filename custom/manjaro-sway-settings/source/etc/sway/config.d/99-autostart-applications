@@ -6,3 +6,7 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec mako
 exec autotiling
 exec flashfocus
+exec gparted
+
+# autostart firstboot help 
+exec [ -f ~/.firstboot ] && $help && rm ~/.firstboot
