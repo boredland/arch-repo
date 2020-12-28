@@ -1,5 +1,4 @@
 {
-    "editor.fontFamily": "'DroidSansMono Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
-    "terminal.integrated.fontFamily": "DroidSansMono Nerd Font",
+    "editor.fontFamily": "'TerminessTTF Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
     "terminal.integrated.fontSize": 16,
 }

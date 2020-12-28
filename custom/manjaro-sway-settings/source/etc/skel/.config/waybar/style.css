@@ -47,14 +47,14 @@
     min-height: 0;
     margin: 0;
     padding: 0;
-    font-family: "FontAwesome 5 Free Solid", "Noto Sans", Roboto, sans-serif;
+    font-family: "FontAwesome 5 Free Solid", "font-logos", "TerminessTTF Nerd Font", sans-serif;
 }
 
 /* The whole bar */
 #waybar {
     background: @background_color;
     color: @text_color;
-    font-family: "Noto Sans", Roboto, sans-serif;
+    font-family: "TerminessTTF Nerd Font", sans-serif;
     font-size: 13px;
 }
 
@@ -193,6 +193,10 @@
 
 #custom-pacman {
     color: @warning_color;
+}
+
+#custom-menu {
+    background-color: @accent_color;
 }
 
 #bluetooth.disabled {
