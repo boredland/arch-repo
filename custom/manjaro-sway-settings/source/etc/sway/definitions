@@ -10,7 +10,7 @@ set $up k
 set $right l
 
 # background
-set $background /usr/share/backgrounds/manjaro-wallpapers-18.0/default-adapta.jpg
+set $background /etc/sway/themes/background.png
 
 # styles - matcha-green or matcha-blue
 set $theme /etc/sway/themes/matcha-green
