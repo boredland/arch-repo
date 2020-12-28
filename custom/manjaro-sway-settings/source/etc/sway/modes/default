@@ -36,6 +36,9 @@ bindsym XF86MonBrightnessUp exec light -A 5
 # capture PowerOff key
 bindsym XF86PowerOff exec $shutdown
 
+# capture touchpad disable
+bindsym XF86TouchpadToggle input type:touchpad events toggle enabled disabled
+
 #
 # Moving around:
 #
