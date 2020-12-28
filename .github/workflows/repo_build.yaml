@@ -1,4 +1,4 @@
-name: prepare
+name: repo_build
 on:
   repository_dispatch:
     types: [dependency_update]
