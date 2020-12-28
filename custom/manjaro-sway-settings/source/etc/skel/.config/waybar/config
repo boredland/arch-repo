@@ -172,8 +172,8 @@
         "format": "  {}",
         "interval": 3600,
         "exec-if": "[ $(checkupdates | wc -l) -gt 0 ]",
-        "exec": "checkupdates | wc -l",
-        "on-click": "pamac-manager && pamac checkupdates -a -q | wc -l",
+        "exec": "pamac checkupdates | wc -l",
+        "on-click": "pamac-manager --updates && pamac checkupdates -a -q | wc -l",
     },
 
     "custom/menu": {
