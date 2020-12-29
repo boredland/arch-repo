@@ -1,7 +1,3 @@
-pre_install() {
-    mv -f /etc/skel/.zshrc /etc/skel/.zshrc.pre-manjaro-sway-settings
-}
-
-post_remove() {
-	mv -f /etc/skel/.zshrc.pre-manjaro-sway-settings /etc/skel/.zshrc
+post_upgrade() {
+	echo -e "\033[33mplease run 'cp -rf /etc/skel/.config/* ~/.config' to update your .config.\033[0m"
 }
