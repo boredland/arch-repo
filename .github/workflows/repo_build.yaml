@@ -15,12 +15,13 @@ jobs:
     container:
       image: docker://boredland/manjaro-builder:latest
     steps:
-      - name: checkout
+      - 
+        name: checkout
         uses: actions/checkout@v2
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
-
-      - name: prepare_env
+      - 
+        name: prepare_env
         run: |
           echo "ARCH=`uname -a | sed -E 's/.+ (.+) .+/\1/'`" >> $GITHUB_ENV
           echo "OWNER=${GITHUB_REPOSITORY%/*}" >> $GITHUB_ENV
@@ -43,11 +44,11 @@ jobs:
           rm -rf ${REPO_DIR}/${ARCH}
           mkdir -p ${REPO_DIR}/${ARCH}
 
-          sudo -u builder gpg --recv-key E25D679AF73C6D2F
+          sudo -u builder gpg --recv-key E25D679AF73C6D2F F4B432D5D67990E3
 
           pacman -Syyu --noconfirm
-
-      - name: prepare_work
+      -  
+        name: prepare_work
         run: |
           source $GITHUB_WORKSPACE/helpers.sh
           cp -f repo.conf /etc/pacman.d/
@@ -63,8 +64,8 @@ jobs:
           fi
           rm -f /etc/pacman.d/repo.conf
           pacman -Sy
-
-      - name: build_aur_pkg
+      - 
+        name: build_aur_pkg
         run: |  
           if test -f "build.tmp"; then
             cat build.tmp
@@ -73,8 +74,8 @@ jobs:
               find ${BUILD_DIR} -name ${PKG}*.pkg.tar.zst -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
             done <build.tmp
           fi
-
-      - name: build_custom_pkg
+      - 
+        name: build_custom_pkg
         run: |
           cp -f repo.conf /etc/pacman.d/
           pacman -Sy
@@ -88,8 +89,8 @@ jobs:
             cp -f ${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}/
             cd ..
           done
-
-      - name: prepare_gh_pages
+      - 
+        name: prepare_gh_pages
         run: |
           cd ${REPO_DIR}/${ARCH}/
           repo-add ${OWNER}.db.tar.gz *.pkg.tar.zst
@@ -99,20 +100,18 @@ jobs:
 
           cp $GITHUB_WORKSPACE/index.template.html $GITHUB_WORKSPACE/gh-pages/index.html
           mkdir $GITHUB_WORKSPACE/gh-pages/_includes && cp $GITHUB_WORKSPACE/repo.conf $GITHUB_WORKSPACE/gh-pages/_includes/repo.conf
-
-      - name: deploy
+      - 
+        name: deploy
         uses: crazy-max/ghaction-github-pages@v1
         with:
           target_branch: gh-pages
           build_dir: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: jakejarvis/wait-action@master
-        with:
-          time: '120s'
-
-      - uses: peter-evans/repository-dispatch@v1
+      - 
+        run: sleep 2m
+      - 
+        uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.DISPATCH_TOKEN }}
           repository: boredland/manjaro-sway

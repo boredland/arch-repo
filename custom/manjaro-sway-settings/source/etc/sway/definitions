@@ -55,3 +55,6 @@ set $pulseaudio $term_float pulsemixer
 
 # help command
 set $help $term_float 'man /etc/sway/help.man'
+
+# onscreen bar
+set $onscreen_bar bash /etc/sway/scripts/wob.sh
