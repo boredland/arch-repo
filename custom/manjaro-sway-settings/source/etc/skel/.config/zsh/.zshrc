@@ -27,3 +27,6 @@ plugins=(
 )
 ZSH_THEME="agnoster"
 source $ZSH/oh-my-zsh.sh
+
+source ~/.config/zsh/conf.d/*
+

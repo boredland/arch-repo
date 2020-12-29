@@ -62,7 +62,7 @@
             ""  // Icon: battery-full
         ],
         "tooltip": false,
-        "bat": "0"
+        "bat": "BAT0"
     },
 
     "clock": {
