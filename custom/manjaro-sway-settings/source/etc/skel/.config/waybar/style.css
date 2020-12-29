@@ -55,7 +55,7 @@
     background: @background_color;
     color: @text_color;
     font-family: "TerminessTTF Nerd Font", sans-serif;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Each module */
@@ -106,6 +106,10 @@
     animation-duration: 2s;
 }
 
+#clock {
+    font-weight: bold;
+}
+
 #cpu {
   /* No styles */
 }
@@ -116,6 +120,10 @@
 
 #cpu.critical {
     color: @error_color;
+}
+
+#custom-menu {
+    background-color: @accent_color;
 }
 
 #memory {
@@ -193,10 +201,6 @@
 
 #custom-pacman {
     color: @warning_color;
-}
-
-#custom-menu {
-    background-color: @accent_color;
 }
 
 #bluetooth.disabled {

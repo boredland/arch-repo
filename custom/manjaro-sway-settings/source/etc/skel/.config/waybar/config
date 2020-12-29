@@ -13,7 +13,7 @@
 
     "layer": "top",
 
-    // "position": "top",
+    "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
     "height": 30,
@@ -27,17 +27,17 @@
         "sway/window"
     ],
     "modules-right": [
-        "tray",
-        "custom/pacman",
-        "idle_inhibitor",
         "network",
-	    "bluetooth",
+        "bluetooth",
         "cpu",
         "memory",
-        "temperature",
         "battery",
+        "temperature",
         "backlight",
+        "idle_inhibitor",
         "pulseaudio",
+        "custom/pacman",
+        "tray",
         "clock"
     ],
 
@@ -52,8 +52,8 @@
             "warning": 30,
             "critical": 15
         },
-        "format-charging": "  {icon}", // Icon: bolt
-        "format": "{icon}",
+        "format-charging": " {icon} {capacity}%", // Icon: bolt
+        "format": "{icon}  {capacity}%",
         "format-icons": [
             "", // Icon: battery-empty
             "", // Icon: battery-quarter
@@ -62,7 +62,7 @@
             ""  // Icon: battery-full
         ],
         "tooltip": false,
-        "bat": "BAT0"
+        "bat": "0"
     },
 
     "clock": {
@@ -74,7 +74,7 @@
 
     "cpu": {
         "interval": 5,
-        "format": "  {usage}%", // Icon: microchip
+        "format": " {usage}%", // Icon: microchip
         "states": {
             "warning": 70,
             "critical": 90
@@ -84,7 +84,7 @@
 
     "memory": {
         "interval": 5,
-        "format": "  {}%", // Icon: memory
+        "format": " {}%", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -94,11 +94,11 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
-        "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
+        "format-wifi": " {essid} ({signalStrength}%)", // Icon: wifi
+        "format-ethernet": " {ifname}", // Icon: ethernet
         "format-disconnected": "⚠  Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}",
-        "on-click": "swaymsg exec \\$term_float nmtui" 
+        "on-click": "swaymsg exec \\$term_float nmtui"
     },
 
     "sway/mode": {
@@ -135,7 +135,7 @@
     "pulseaudio": {
         //"scroll-step": 1,
         "format": "{icon}  {volume}%    {format_source}",
-        "format-bluetooth": "{icon}  {volume}%",
+        "format-bluetooth": "{icon}  {volume}%    {format_source}",
         "format-muted": "",
         "format-icons": {
             "headphones": "",
@@ -152,7 +152,7 @@
     "temperature": {
       "critical-threshold": 80,
       "interval": 5,
-      "format": "{icon}  {temperatureC}°C",
+      "format": "{icon} {temperatureC}°C",
       "format-icons": [
           "", // Icon: temperature-empty
           "", // Icon: temperature-quarter
@@ -169,7 +169,7 @@
     },
 
     "custom/pacman": {
-        "format": "  {}",
+        "format": " {}",
         "interval": 3600,
         "exec-if": "[ $(checkupdates | wc -l) -gt 0 ]",
         "exec": "pamac checkupdates | wc -l",
@@ -177,9 +177,9 @@
     },
 
     "custom/menu": {
-         "format": "",
-         "on-click": "swaymsg exec \\$menu",
-         "tooltip": false
+        "format": "",
+        "on-click": "swaymsg exec \\$menu",
+        "tooltip": false
     },
 
     "bluetooth": {
