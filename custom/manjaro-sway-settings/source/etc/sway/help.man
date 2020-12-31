@@ -6,98 +6,107 @@
 Manjaro Sway Edition
 
 .SH SHORTCUTS
-Default Modifier: 
-.B Super
 
-New Terminal: 
-.I mod
-+ 
-.B Enter
+.SS Action
 
-Application Launcher:
-.I mod
-+
-.B d
+.B Kill focused window:
+.I Super + Shift + q
 
-Resize Mode:
-.I mod
-+ 
-.B r
+.B Reload Sway Configuration:
+.I Super + Shift + c
 
-Screenshot Mode:
-.I mod
-+ 
-.B Shift
-+
-.B s
+.B Increase volume of Master:
+.I Volume+
 
-Recording Mode:
-.I mod
-+
-.B Shift
-+
-.B r
+.B Decrease volume of Master:
+.I Volume-
 
-Move Window to Workspace:
-.I mod
-+
-.B Shift
-+
-.I [number]
+.B Mute volume of Master:
+.I Mute
 
-Switch to Workspace:
-.I mod
-+
-.I [number]
+.B Increase brightness:
+.I Brightness+
 
-Kill window:
-.I mod
-+
-.B Shift
-+
-.B q
+.B Decrease brightness:
+.I Brightness-
 
-Toggle Floating:
-.I mod
-+
-.B Shift
-+
-.B Space
+.B Power off:
+.I Power off
 
-Drag/Move window:
-.I mod
-+
-.B Shift
-+
-.I [arrow]
+.B Toggle touchpad:
+.I Toggle Touchpad
 
-Navigate Windows:
-.I mod
-+
-.I [arrow]
+.B Move focussed window to workspace:
+.I Super + Shift + [number]
 
-Fullscreen:
-.I mod
-+
-.B f
+.B Switch to window stacking:
+.I Super + s
 
+.B Switch to window tabbing:
+.I Super + w
 
-Exit:
-.I mod
-+
-.B Shift
-+
-.B e
+.B Toggle window splitting:
+.I Super + e
 
-Open Help Overlay:
-.I mod
-+
-.B Shift
-+
-.B ?
+.B Toggle fullscreen:
+.I Super + f
 
-Close Help Overlay:
-.B q
+.B Toggle floating:
+.I Super + Shift + space
+
+.B Move the currently focused window to the scratchpad:
+.I Super + Shift + minus
+
+.B Show the next scratchpad window or hide the focused scratchpad window.:
+.I Super + minus
+
+.SS Launch
+
+.B Terminal:
+.I Super + Return
+
+.B Launcher:
+.I Super + d
+
+.B Exit Menu:
+.I Super + Shift + e
+
+.B Help:
+.I Super + question
+
+.B Recording Mode:
+.I Super + Shift + r
+
+.B Resize Mode:
+.I Super + r
+
+.B Screenshot Mode:
+.I Super + Shift + s
+
+.SS Navigation
+
+.B Move focus:
+.I Super + ↑ ↓ ← →
+
+.B Move focussed window:
+.I Super + Shift + ↑ ↓ ← →
+
+.B Switch workspace:
+.I Super + [number]
+
+.B Swap focus between the tiling area and the floating area:
+.I Super + space
+
+.B Swap focus to the parent window:
+.I Super + a
+
+.SS Setting
+
+.B Split windows horizontally:
+.I Super + b
+
+.B Split windows vertically:
+.I Super + v
 
 .SH UTILS
 
