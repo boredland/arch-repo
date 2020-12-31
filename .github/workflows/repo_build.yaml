@@ -10,15 +10,18 @@ env:
   REPO_DIR: /builder/repository
 
 jobs:
-  release:
+  cancel:
     runs-on: ubuntu-latest
-    container:
-      image: docker://boredland/manjaro-builder:latest
     steps:
       - 
         uses: styfle/cancel-workflow-action@0.6.0
         with:
           access_token: ${{ github.token }}
+  release:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://boredland/manjaro-builder:latest
+    steps:
       - 
         name: checkout
         uses: actions/checkout@v2
