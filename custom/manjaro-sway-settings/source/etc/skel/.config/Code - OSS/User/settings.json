@@ -1,5 +1,0 @@
-{
-    "editor.fontFamily": "'TerminessTTF Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
-    "terminal.integrated.fontSize": 16,
-    "files.autoSave": "onFocusChange",
-}

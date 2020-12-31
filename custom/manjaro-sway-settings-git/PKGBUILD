@@ -1,0 +1,58 @@
+# Maintainer: Jonas Strassel <info@jonas-strassel.de>
+
+_pkgname=manjaro-sway-settings
+pkgname=$_pkgname-git
+pkgver=r72.e6668f3.20201231161209
+pkgrel=1
+arch=('any')
+license=('MIT')
+pkgdesc='Manjaro Sway Settings'
+url="https://github.com/boredland/manjaro-sway-settings"
+groups=('sway-manjaro')
+depends=(
+    'manjaro-base-skel'
+    'sway'
+    'waybar'
+    'autotiling'
+    'swaylock'
+    'sway-launcher-desktop'
+    'swayidle'
+    'pamixer'
+    'playerctl'
+    'light'
+    'grim'
+    'mako'
+    'polkit-gnome'
+    'gnome-keyring'
+    'blueberry'
+    'swaynagmode'
+    'htop'
+    'ttf-font-logos'
+)
+makedepends=('git')
+optdepends=(
+    'ranger: a keyboard centric file manager'
+    'qutebrowser: a keyboard-centric browser'
+)
+provides=('manjaro-desktop-settings')
+conflicts=('manjaro-sway-settings')
+
+source=("${_pkgname}::git+${url}.git")
+
+md5sums=("SKIP")
+
+pkgver() {
+    cd "$srcdir/$_gitname"
+    printf "r%s.%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)" "$(date +"%Y%m%d%H%M%S")"
+}
+
+package() {
+    install -d $pkgdir/etc
+    install -d $pkgdir/usr
+    cp -r ${srcdir}/${_pkgname}/etc/* "${pkgdir}/etc/"
+    cp -r ${srcdir}/${_pkgname}/usr/* "${pkgdir}/usr/"
+}
+
+post_upgrade() {
+	echo -e "\033[33mplease run 'cp -rf /etc/skel/.config/* ~/.config' to update your .config.\033[0m"
+}
