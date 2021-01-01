@@ -48,7 +48,7 @@ depends=(
 	'papirus-maia-icon-theme'
 	'xcursor-breeze'
 	'grub-theme-manjaro'
-    'nerd-fonts-terminus'
+    'nerd-fonts-noto-sans-mono'
     'ttf-font-awesome'
     'ttf-font-logos'
     'blueberry'
