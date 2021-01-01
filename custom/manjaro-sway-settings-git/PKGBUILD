@@ -27,7 +27,6 @@ depends=(
 	'swaybg'
 	'swayidle'
 	'swaylock'
-	'swaynagmode'
 	'waybar'
 	'wob'
 	'wdisplays'
