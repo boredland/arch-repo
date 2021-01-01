@@ -76,9 +76,9 @@ jobs:
         run: |  
           if test -f "build.tmp"; then
             cat build.tmp
-            sudo -u builder yay -S --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat build.tmp | tr -s '\n' ' ')
+            sudo -u builder yay -S --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat build.tmp | sed 's/.*/aur\/&/' | tr -s '\n' ' ')
             while read PKG || [[ -n $PKG ]]; do
-              find ${BUILD_DIR} -name ${PKG}*.pkg.tar.zst -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
+              find ${BUILD_DIR} -name "${PKG}*.pkg.tar.zst" -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
             done <build.tmp
           fi
       - 

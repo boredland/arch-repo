@@ -11,7 +11,7 @@ make_worklist () {
             echo "$PKG">>download.tmp
         elif [[ $AUR_VERSION != $REPO_VERSION ]]; then
             echo "$PKG is outdated => build $AUR_VERSION"
-            echo "$PKG">>build.tmp
+            echo "${PKG}">>build.tmp
         fi
     done <packages.txt
 }

@@ -1,3 +1,4 @@
 custom/*/pkg
 custom/*/src
 **/*.pkg.tar.zst
+*.tmp
