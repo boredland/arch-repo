@@ -10,3 +10,5 @@ grimshot
 wdisplays
 oh-my-zsh-git
 wob
+nerd-fonts-roboto-mono
+ttf-material-design-icons-git
