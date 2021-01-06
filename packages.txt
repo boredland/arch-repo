@@ -1,6 +1,5 @@
 autotiling
 flashfocus-git
-google-cloud-sdk
 greetd
 greetd-gtkgreet
 sway-launcher-desktop

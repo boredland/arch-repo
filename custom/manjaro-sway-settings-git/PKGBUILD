@@ -2,12 +2,13 @@
 
 _pkgname=manjaro-sway-settings
 pkgname=$_pkgname-git
-pkgver=r72.e6668f3.20201231161209
+pkgver=r80.fce815e.20210106170332
 pkgrel=1
 arch=('any')
 license=('MIT')
 pkgdesc='Manjaro Sway Settings'
-url="https://github.com/boredland/manjaro-sway-settings"
+url="https://github.com/boredland/desktop-settings"
+_branch=sway
 groups=('sway-manjaro')
 depends=(
     'manjaro-base-skel'
@@ -27,7 +28,7 @@ optdepends=(
 provides=('manjaro-desktop-settings')
 conflicts=('manjaro-sway-settings')
 
-source=("${_pkgname}::git+${url}.git")
+source=("${_pkgname}::git+${url}.git#branch=$_branch")
 
 md5sums=("SKIP")
 
@@ -38,9 +39,12 @@ pkgver() {
 
 package() {
     install -d $pkgdir/etc
-    install -d $pkgdir/usr
-    cp -r ${srcdir}/${_pkgname}/etc/* "${pkgdir}/etc/"
-    cp -r ${srcdir}/${_pkgname}/usr/* "${pkgdir}/usr/"
+    cp -r $_pkgname/community/sway/skel $pkgdir/etc
+    cp -r $_pkgname/community/sway/sway $pkgdir/etc
+
+    install -d $pkgdir/usr/share/glib-2.0/schemas
+    cp $_pkgname/community/sway/schemas/* $pkgdir/usr/share/glib-2.0/schemas
+
 }
 
 post_upgrade() {
