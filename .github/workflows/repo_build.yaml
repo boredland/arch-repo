@@ -26,7 +26,15 @@ jobs:
         name: checkout
         uses: actions/checkout@v2
         with:
+          submodules: true
           token: "${{ secrets.GITHUB_TOKEN }}"
+      - 
+        name: submodules
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+          # git commit -m "chore: update submodules"
+          # git push
       - 
         name: prepare_env
         run: |
@@ -42,8 +50,6 @@ jobs:
 
           echo "Include = /etc/pacman.d/*" >>/etc/pacman.conf
 
-          echo "COMPRESSXZ=(xz -c -z -)">>/etc/makepkg.conf
-
           useradd -d /builder -m builder
           echo "builder ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
           mkdir -p ${BUILD_DIR} && chown -R builder:builder ${BUILD_DIR}
@@ -51,36 +57,8 @@ jobs:
           rm -rf ${REPO_DIR}/${ARCH}
           mkdir -p ${REPO_DIR}/${ARCH}
 
-          sudo -u builder gpg --recv-key E25D679AF73C6D2F F4B432D5D67990E3
-
+          sudo -u builder gpg --recv-key F4B432D5D67990E3
           pacman -Syyu --noconfirm
-      -  
-        name: prepare_work
-        run: |
-          source $GITHUB_WORKSPACE/helpers.sh
-          cp -f repo.conf /etc/pacman.d/
-          pacman -Sy || echo "warn: problems in custom repo!"
-          make_worklist
-
-          if test -f "download.tmp"; then
-            pacman -Sw --noconfirm $(cat download.tmp | tr -s '\n' ' ')
-
-            while read PKG || [[ -n $PKG ]]; do
-              cp -f /var/cache/pacman/pkg/${PKG}*.pkg.tar.zst ${REPO_DIR}/${ARCH}
-            done <download.tmp
-          fi
-          rm -f /etc/pacman.d/repo.conf
-          pacman -Sy
-      - 
-        name: build_aur_pkg
-        run: |  
-          if test -f "build.tmp"; then
-            cat build.tmp
-            sudo -u builder yay -S --builddir ${BUILD_DIR} --noconfirm --nopgpfetch $(cat build.tmp | sed 's/.*/aur\/&/' | tr -s '\n' ' ')
-            while read PKG || [[ -n $PKG ]]; do
-              find ${BUILD_DIR} -name "${PKG}*.pkg.tar.zst" -exec cp -f {} ${REPO_DIR}/${ARCH}/ \;
-            done <build.tmp
-          fi
       - 
         name: build_custom_pkg
         run: |

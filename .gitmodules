@@ -1,0 +1,33 @@
+[submodule "custom/oh-my-zsh"]
+	path = custom/oh-my-zsh
+	url = https://gitlab.manjaro.org/packages/community/sway/oh-my-zsh.git
+[submodule "custom/sbdp"]
+	path = custom/sbdp
+	url = https://gitlab.manjaro.org/packages/community/sway/sbdp.git
+[submodule "custom/ttf-material-design-icons"]
+	path = custom/ttf-material-design-icons
+	url = https://gitlab.manjaro.org/packages/community/sway/ttf-material-design-icons.git
+[submodule "custom/nerd-fonts-roboto-mono"]
+	path = custom/nerd-fonts-roboto-mono
+	url = https://gitlab.manjaro.org/packages/community/sway/nerd-fonts-roboto-mono.git
+[submodule "custom/wob"]
+	path = custom/wob
+	url = https://gitlab.manjaro.org/packages/community/sway/wob.git
+[submodule "custom/wlogout"]
+	path = custom/wlogout
+	url = https://gitlab.manjaro.org/packages/community/sway/wlogout.git
+[submodule "custom/termite-nocsd"]
+	path = custom/termite-nocsd
+	url = https://gitlab.manjaro.org/packages/community/sway/termite-nocsd.git
+[submodule "custom/sway-launcher-desktop"]
+	path = custom/sway-launcher-desktop
+	url = https://gitlab.manjaro.org/packages/community/sway/sway-launcher-desktop.git
+[submodule "custom/autotiling"]
+	path = custom/autotiling
+	url = https://gitlab.manjaro.org/packages/community/sway/autotiling.git
+[submodule "custom/greetd-gtkgreet"]
+	path = custom/greetd-gtkgreet
+	url = https://gitlab.manjaro.org/packages/community/sway/greetd-gtkgreet.git
+[submodule "custom/greetd"]
+	path = custom/greetd
+	url = https://gitlab.manjaro.org/packages/community/sway/greetd.git
