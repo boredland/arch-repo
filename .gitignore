@@ -1,4 +1,5 @@
-custom/*/pkg
-custom/*/src
+**/pkg
+**/src
+**/*.tar.gz
 **/*.pkg.tar.zst
 *.tmp

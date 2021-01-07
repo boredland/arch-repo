@@ -26,7 +26,7 @@ depends=(
     'wlogout' # nice logout menu
     'noto-fonts-emoji' # emji font
     'nerd-fonts-roboto-mono' # default monospace font
-    'ttf-material-design-icons' # material design icons used in waybar
+    'ttf-material-design-icons-webfont' # material design icons used in waybar
 )
 makedepends=('git')
 optdepends=(

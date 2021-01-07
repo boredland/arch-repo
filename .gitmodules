@@ -4,9 +4,6 @@
 [submodule "custom/sbdp"]
 	path = custom/sbdp
 	url = https://gitlab.manjaro.org/packages/community/sway/sbdp.git
-[submodule "custom/ttf-material-design-icons"]
-	path = custom/ttf-material-design-icons
-	url = https://gitlab.manjaro.org/packages/community/sway/ttf-material-design-icons.git
 [submodule "custom/nerd-fonts-roboto-mono"]
 	path = custom/nerd-fonts-roboto-mono
 	url = https://gitlab.manjaro.org/packages/community/sway/nerd-fonts-roboto-mono.git
