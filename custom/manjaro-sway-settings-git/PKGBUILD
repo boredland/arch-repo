@@ -2,7 +2,7 @@
 
 _pkgname=manjaro-sway-settings
 pkgname=$_pkgname-git
-pkgver=r82.22c1172.20210107172339
+pkgver=r84.76aacaf.20210107200936
 pkgrel=1
 arch=('any')
 license=('MIT')
@@ -12,13 +12,21 @@ _branch=sway
 groups=('sway-manjaro')
 depends=(
     'manjaro-base-skel'
-    'autotiling'
-    'flashfocus'
-	'light'
-	'mako'
-	'qt5-wayland'
-	'sway'
-	'sbdp-git'
+    'waybar' # configurable bar
+	'light' # cli to control brightness
+	'mako' # desktop notifications
+	'sway' # the desktop manager
+	'sbdp' # sway config docs parser
+    'autotiling' # automated tiling for sway
+    'sway-launcher-desktop' # tui launcher application
+    'grim' # screenshot tool
+    'slurp' # helper for grim
+    'wob' # wayland overlay bar for brightness and volume
+    'termite' # configurable terminal application
+    'wlogout' # nice logout menu
+    'noto-fonts-emoji' # emji font
+    'nerd-fonts-roboto-mono' # default monospace font
+    'ttf-material-design-icons' # material design icons used in waybar
 )
 makedepends=('git')
 optdepends=(
