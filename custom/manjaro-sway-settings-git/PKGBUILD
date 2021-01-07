@@ -2,7 +2,7 @@
 
 _pkgname=manjaro-sway-settings
 pkgname=$_pkgname-git
-pkgver=r80.fce815e.20210106170332
+pkgver=r82.22c1172.20210107172339
 pkgrel=1
 arch=('any')
 license=('MIT')
@@ -42,8 +42,4 @@ package() {
     install -d $pkgdir/usr
     cp -r $_pkgname/community/sway/etc/* "${pkgdir}/etc/"
     cp -r $_pkgname/community/sway/usr/* "${pkgdir}/usr/" 
-}
-
-post_upgrade() {
-	echo -e "\033[33mplease run 'cp -rf /etc/skel/.config/* ~/.config' to update your .config.\033[0m"
 }
