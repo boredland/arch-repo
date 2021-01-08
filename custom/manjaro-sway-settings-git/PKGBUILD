@@ -27,6 +27,8 @@ depends=(
     'noto-fonts-emoji' # emji font
     'nerd-fonts-roboto-mono' # default monospace font
     'ttf-material-design-icons-webfont' # material design icons used in waybar
+    'python-hjson' # cleaning json in config files
+    'jq' # parsing and manipulating json
 )
 makedepends=('git')
 optdepends=(
