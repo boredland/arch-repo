@@ -59,6 +59,7 @@ jobs:
 
           sudo -u builder gpg --recv-key F4B432D5D67990E3
           pacman -Syyu --noconfirm
+          pacman-mirrors --api --set-branch unstable
       - 
         name: build_custom_pkg
         run: |
