@@ -38,6 +38,7 @@ makedepends=('git')
 optdepends=(
     'ranger: a keyboard centric file manager'
     'qutebrowser: a keyboard-centric browser'
+    'flashfocus: better flashing on focus changes'
 )
 provides=('manjaro-desktop-settings')
 conflicts=('manjaro-sway-settings')
