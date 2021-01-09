@@ -29,6 +29,7 @@ depends=(
     'ttf-material-design-icons-webfont' # material design icons used in waybar
     'python-hjson' # cleaning json in config files
     'jq' # parsing and manipulating json
+    'kanshi' # automatically load matching output profiles
 )
 makedepends=('git')
 optdepends=(
