@@ -19,6 +19,7 @@ depends=(
 	'sbdp' # sway config docs parser
     'autotiling' # automated tiling for sway
     'sway-launcher-desktop' # tui launcher application
+    'swaylock' # lockscreen
     'grim' # screenshot tool
     'slurp' # helper for grim
     'wob' # wayland overlay bar for brightness and volume
