@@ -32,6 +32,7 @@ depends=(
     'jq' # parsing and manipulating json
     'kanshi' # automatically load matching output profiles
     'khal' # calendar application around caldav
+    'lm_sensors' # display sensor information
 )
 makedepends=('git')
 optdepends=(
