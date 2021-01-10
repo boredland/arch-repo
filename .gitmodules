@@ -1,3 +1,6 @@
 [submodule "custom/wlsunset"]
 	path = custom/wlsunset
 	url = https://aur.archlinux.org/wlsunset.git
+[submodule "custom/manjaro-sway-settings"]
+	path = custom/manjaro-sway-settings
+	url = https://github.com/boredland/manjaro-sway-settings.git
