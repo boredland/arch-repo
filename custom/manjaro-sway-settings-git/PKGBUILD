@@ -33,12 +33,14 @@ depends=(
     'kanshi' # automatically load matching output profiles
     'khal' # calendar application around caldav
     'lm_sensors' # display sensor information
+    'wlsunset' # time & place based gamma correction
 )
 makedepends=('git')
 optdepends=(
     'ranger: a keyboard centric file manager'
     'qutebrowser: a keyboard-centric browser'
     'flashfocus: better flashing on focus changes'
+    'swaylock-effects: swaylock with nicer effects'
 )
 provides=('manjaro-desktop-settings')
 conflicts=('manjaro-sway-settings')

@@ -1,0 +1,3 @@
+[submodule "custom/wlsunset"]
+	path = custom/wlsunset
+	url = https://aur.archlinux.org/wlsunset.git
