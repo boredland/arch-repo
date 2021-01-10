@@ -17,7 +17,6 @@ depends=(
 	'mako' # desktop notifications
 	'sway' # the desktop manager
 	'sbdp' # sway config docs parser
-    'autotiling' # automated tiling for sway
     'sway-launcher-desktop' # tui launcher application
     'swaylock' # lockscreen
     'grim' # screenshot tool
@@ -30,10 +29,8 @@ depends=(
     'ttf-material-design-icons-webfont' # material design icons used in waybar
     'python-hjson' # cleaning json in config files
     'jq' # parsing and manipulating json
-    'kanshi' # automatically load matching output profiles
     'khal' # calendar application around caldav
     'lm_sensors' # display sensor information
-    'wlsunset' # time & place based gamma correction
 )
 makedepends=('git')
 optdepends=(
@@ -41,6 +38,9 @@ optdepends=(
     'qutebrowser: a keyboard-centric browser'
     'flashfocus: better flashing on focus changes'
     'swaylock-effects: swaylock with nicer effects'
+    'wlsunset: time & place based light temperature'
+    'kanshi: automatically load matching output profiles'
+    'autotiling: automated tiling'
 )
 provides=('manjaro-desktop-settings')
 conflicts=('manjaro-sway-settings')
