@@ -4,3 +4,6 @@
 [submodule "custom/manjaro-sway-settings"]
 	path = custom/manjaro-sway-settings
 	url = https://github.com/boredland/manjaro-sway-settings.git
+[submodule "custom/ttf-material-design-icons-webfont"]
+	path = custom/ttf-material-design-icons-webfont
+	url = https://gitlab.manjaro.org/packages/community/sway/ttf-material-design-icons-webfont.git
